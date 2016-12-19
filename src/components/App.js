@@ -9,6 +9,7 @@ import {
 } from 'react-router';
 import Home from './Home/Home';
 import Dashboard from './Dashboard/Dashboard';
+import Signup from './Signup/Signup';
 import NotFound from './NotFound';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
             <Router history={hashHistory}>
                 <Route path='/' component={Home}/>
                 <Route path='/dashboard' component={Dashboard}/>
+                <Route path='/signup' component={Signup}/>
                 <Route path='*' component={NotFound}/>
             </Router>
         )
