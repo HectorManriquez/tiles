@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import updateUser from '../../utils/updateUser';
 import Promise from 'bluebird';
 
-import Head from '../Header/Header';
-
 class Dashboard extends Component {
     constructor() {
         super();
@@ -37,7 +35,6 @@ class Dashboard extends Component {
     render() {
         return (
             <div className="container">
-                <Head/>
                 <h4>Update Information</h4>
                 <form className="col s12 m12 l12" onSubmit={this.handleUpdateSubmit}>
                     <div className="row">

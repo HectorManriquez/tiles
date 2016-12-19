@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Head from '../Header/Header';
 import signupUser from '../../utils/signupUser';
 
 class Signup extends Component {
@@ -15,7 +14,6 @@ class Signup extends Component {
     render() {
         return (
             <div className='container'>
-                <Head/>
                 <form className='col s12 m12 l12' onSubmit={this.handleSubmit}>
                     <div className='row'>
                         <div className='input-field col s12 m12 l12'>
