@@ -45,9 +45,22 @@ router.post('/signup', (req, res) => {
 
 /**
  * UPDATE to /update
+ * Updates a user's information
  */
 router.post('/update', (req, res) =>{
-
+    User.findOneAndUpdate({
+        email: req.body.email
+    }, req.body.update, (err) => {
+        if (err) {
+            res.send({
+                status: 'failure'
+            });
+        } else {
+            res.send({
+                status: 'success'
+            })
+        }
+    })
 });
 
 export default router;
