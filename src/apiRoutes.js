@@ -1,5 +1,6 @@
 /**
  * API routes for interacting with the database
+ * All routes are part of /api
  */
 
 import express from 'express';
@@ -42,5 +43,9 @@ router.post('/signup', (req, res) => {
         }
     })
 });
+
+/**
+ * UPDATE to /update
+ */
 
 export default router;
