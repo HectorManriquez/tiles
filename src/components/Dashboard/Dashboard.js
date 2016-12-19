@@ -34,7 +34,7 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 <h4>Update Information</h4>
                 <form className="col s12 m12 l12" onSubmit={this.handleUpdateSubmit}>
                     <div className="row">
