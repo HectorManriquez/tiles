@@ -1,55 +1,106 @@
 import React, {Component} from 'react';
+import updateUser from '../../utils/updateUser';
 
-import Head from '../Head/Head';
+import Head from '../Header/Header';
 
 class Dashboard extends Component {
+    constructor() {
+        super();
+        this.state = {
+            email: '',
+            update: {
+                picture: 'http://freevector.co/wp-content/uploads/2014/09/1954-face-with-a-question-mark7.png'
+            }
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this);
+        this.handlePasswordSubmit = this.handlePasswordSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        // TODO Need to see what's the best way to handle change
+        console.log(event.target.id);
+        this.setState({[event.target.id]: event.target.value});
+        console.log(this.state);
+    }
+
+    handleUpdateSubmit(event) {
+        // TODO Need to verify this works
+        event.preventDefault();
+        updateUser({
+            email: this.state.email,
+            update: this.state.update
+        })
+    }
+
+    handlePasswordSubmit(event) {
+        event.preventDefault();
+        // TODO Need to add route for changing password
+    }
+
     render() {
         return (
             <div className="container">
                 <Head/>
-                <form className="col s12 m12 l12">
+                <h4>Update Information</h4>
+                <form className="col s12 m12 l12" onSubmit={this.handleUpdateSubmit}>
                     <div className="row">
                         <div className="col s6 m6 l6">
                             <img className="responsive-img"
-                                 src="http://vignette4.wikia.nocookie.net/naruto/images/2/27/Kakashi_Hatake.png/revision/latest/scale-to-width-down/300?cb=20160304132814"/>
+                                 src={this.state.update.picture}/>
                         </div>
                         <div className="input-field col s6 m6 l6 valign-wrapper">
-                            <input id="picture" type="text" className="validate"/>
-                            <label for="picture">Picture Link</label>
+                            <label htmlFor="picture">Picture link</label>
+                            <input id="picture" type="text" className="validate" onChange={this.handleChange}/>
                         </div>
                     </div>
+                    <div className="divider"></div>
                     <div className="row">
                         <div className="input-field col s12 m12 l12">
-                            <input id="email" type="text" className="validate"/>
-                            <label for="email">Email</label>
+                            <label htmlFor="email">Email</label>
+                            <input id="email" type="text" className="validate" onChange={this.handleChange}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s6 m6 l6">
-                            <input id="first_name" type="text" className="validate"/>
-                            <label for="first_name">First Name</label>
+                            <label htmlFor="first_name">First Name</label>
+                            <input id="firstName" type="text" className="validate" onChange={this.handleChange}/>
                         </div>
                         <div className="input-field col s6 m6 l6">
-                            <input id="last_name" type="text" className="validate"/>
-                            <label for="last_name">Last Name</label>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12 m12 l12">
-                            <input id="password" type="password" className="validate"/>
-                            <label for="password">Password</label>
+                            <label htmlFor="last_name">Last Name</label>
+                            <input id="lastName" type="text" className="validate" onChange={this.handleChange}/>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col s12 m12 l12">
-                            Description of yourself:
+                            <label htmlFor="description">Description of yourself</label>
                             <div className="input-field inline">
-                                 <textarea rows="5" cols="25">
+                                 <textarea id="description" rows="5" cols="25">
                                  </textarea>
                             </div>
                         </div>
                     </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action">
+                    <button className="btn waves-effect waves-light" type="submit">
+                        Update
+                    </button>
+                </form>
+
+                <h4>Change Password</h4>
+                <form className="col s12 m12 l12" onSubmit={this.handlePasswordSubmit}>
+                    <div className="row">
+                        <div className="input-field col s12 m12 l12">
+                            <label htmlFor="oldPassword">Old Password</label>
+                            <input id="oldPassword" type="password" className="validate"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s12 m12 l12">
+                            <label htmlFor="newPassword">New Password</label>
+                            <input id="newPassword" type="password" className="validate"/>
+                        </div>
+                    </div>
+                    <button className="btn waves-effect waves-light" type="submit">
                         Update
                     </button>
                 </form>
