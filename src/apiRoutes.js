@@ -27,7 +27,6 @@ router.get('/userDetails', (req, res) => {
  * Creates a user
  */
 router.post('/signup', (req, res) => {
-    console.log(req.body);
     User.create({
         email: req.body.email,
         password: req.body.password
@@ -47,5 +46,8 @@ router.post('/signup', (req, res) => {
 /**
  * UPDATE to /update
  */
+router.post('/update', (req, res) =>{
+
+});
 
 export default router;
