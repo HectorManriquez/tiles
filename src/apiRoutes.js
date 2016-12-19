@@ -45,7 +45,8 @@ router.post('/signup', (req, res) => {
 
 /**
  * POST to /update
- * Updates a user's information
+ * Updates a user's information if user exists
+ * Returns updated document
  */
 router.post('/update', (req, res) =>{
     User.findOneAndUpdate({
