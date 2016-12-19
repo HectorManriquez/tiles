@@ -9,6 +9,7 @@ class Head extends Component {
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li><a href="/#/dashboard">Dashboard</a></li>
                         <li><a href="/#/login">Login</a></li>
+                        <li><a href="/#/signup">Sign Up</a></li>
                     </ul>
                 </div>
             </nav>
