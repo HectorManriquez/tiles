@@ -3,10 +3,15 @@
  */
 
 import express from 'express';
+// import Models from '../data/';
+
 const router = express.Router();
 
-router.get("/", function(req, res) {
-    res.sendFile(__dirname + "/assets.js");
+//
+// React router will handle all front end routes
+// -----------------------------------------------------------------------------
+router.get("*", function(req, res) {
+    res.sendFile(__dirname + "/public/index.html");
 });
 
 export default router;
