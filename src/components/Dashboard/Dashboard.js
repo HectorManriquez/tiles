@@ -23,7 +23,10 @@ class Dashboard extends Component {
     handleUpdateSubmit(event) {
         event.preventDefault();
 
-        updateUser(this.state);
+        updateUser(this.state)
+            .then((res) => {
+                console.log(res);
+        });
     }
 
     handlePasswordSubmit(event) {
