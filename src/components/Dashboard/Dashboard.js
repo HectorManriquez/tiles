@@ -41,16 +41,15 @@ class Dashboard extends Component {
                 <h4>Update Information</h4>
                 <form className="col s12 m12 l12" onSubmit={this.handleUpdateSubmit}>
                     <div className="row">
-                        <div className="col s6 m6 l6">
-                            <img className="responsive-img"
+                        <div className="col s12 m6 l6">
+                            <img className="responsive-img" width='200px' height='200px'
                                  src={this.state.picture}/>
                         </div>
-                        <div className="input-field col s6 m6 l6 valign-wrapper">
+                        <div className="input-field col s12 m6 l6">
                             <label htmlFor="picture">Picture link</label>
                             <input id="picture" type="text" className="validate" onChange={this.handleChange}/>
                         </div>
                     </div>
-                    <div className="divider"></div>
                     <div className="row">
                         <div className="input-field col s12 m12 l12">
                             <label htmlFor="email">Email</label>
