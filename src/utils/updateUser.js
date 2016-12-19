@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-function updateUser(user) {
+function updateUser(userInfo) {
     return axios({
-        url: '/api/signup',
+        url: '/api/update',
         timeout: 20000,
         method: 'post',
         responseType: 'json',
-        data: user
+        data: userInfo
     })
         .then(function (res) {
             return res.data;

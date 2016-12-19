@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import updateUser from '../../utils/updateUser';
+import Promise from 'bluebird';
 
 import Head from '../Header/Header';
 
@@ -7,10 +8,7 @@ class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
-            email: '',
-            update: {
-                picture: 'http://freevector.co/wp-content/uploads/2014/09/1954-face-with-a-question-mark7.png'
-            }
+            picture: 'http://freevector.co/wp-content/uploads/2014/09/1954-face-with-a-question-mark7.png'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -19,19 +17,19 @@ class Dashboard extends Component {
     }
 
     handleChange(event) {
-        // TODO Need to see what's the best way to handle change
-        console.log(event.target.id);
-        this.setState({[event.target.id]: event.target.value});
-        console.log(this.state);
+        this.setState({[event.target.id]: event.target.value}, (err) => {
+            console.log(this.state);
+        });
     }
 
     handleUpdateSubmit(event) {
         // TODO Need to verify this works
         event.preventDefault();
-        updateUser({
-            email: this.state.email,
-            update: this.state.update
-        })
+        if (this.state.email) {
+            updateUser(this.state);
+        } else {
+            console.log('Need to provide email');
+        }
     }
 
     handlePasswordSubmit(event) {
@@ -48,7 +46,7 @@ class Dashboard extends Component {
                     <div className="row">
                         <div className="col s6 m6 l6">
                             <img className="responsive-img"
-                                 src={this.state.update.picture}/>
+                                 src={this.state.picture}/>
                         </div>
                         <div className="input-field col s6 m6 l6 valign-wrapper">
                             <label htmlFor="picture">Picture link</label>
@@ -59,7 +57,7 @@ class Dashboard extends Component {
                     <div className="row">
                         <div className="input-field col s12 m12 l12">
                             <label htmlFor="email">Email</label>
-                            <input id="email" type="text" className="validate" onChange={this.handleChange}/>
+                            <input id="email" type="text" className="validate" onChange={this.handleChange} required/>
                         </div>
                     </div>
                     <div className="row">
@@ -76,7 +74,7 @@ class Dashboard extends Component {
                         <div className="col s12 m12 l12">
                             <label htmlFor="description">Description of yourself</label>
                             <div className="input-field inline">
-                                 <textarea id="description" rows="5" cols="25">
+                                 <textarea id="description" rows="5" cols="25" onChange={this.handleChange}>
                                  </textarea>
                             </div>
                         </div>
