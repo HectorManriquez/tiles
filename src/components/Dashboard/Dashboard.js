@@ -17,19 +17,13 @@ class Dashboard extends Component {
     }
 
     handleChange(event) {
-        this.setState({[event.target.id]: event.target.value}, (err) => {
-            console.log(this.state);
-        });
+        this.setState({[event.target.id]: event.target.value});
     }
 
     handleUpdateSubmit(event) {
-        // TODO Need to verify this works
         event.preventDefault();
-        if (this.state.email) {
-            updateUser(this.state);
-        } else {
-            console.log('Need to provide email');
-        }
+
+        updateUser(this.state);
     }
 
     handlePasswordSubmit(event) {
