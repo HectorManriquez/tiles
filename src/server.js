@@ -26,8 +26,8 @@ app.use(bodyParser.json());
 //
 // Register routes in express
 // -----------------------------------------------------------------------------
-app.use('/', routes);
 app.use('/api', apiRoutes);
+app.use('/', routes);
 
 //
 // Launch the server
