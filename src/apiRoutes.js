@@ -18,8 +18,29 @@ router.get('/', function(req, res) {
 //
 // Dashboard routes for viewing and modifying profile
 // -----------------------------------------------------------------------------
-router.get('/userDetails', (req, res) => {
-    res.send('This is some data');
+
+/**
+ * GET to /users
+ * Get all users
+ */
+router.get('/users', (req, res) => {
+    User.find({}, {
+        email: 1,
+        firstName: 1,
+        lastName: 1,
+        picture: 1,
+        description: 1
+    }, {
+        limit: 10
+    }, (err, docs) => {
+        if (err) {
+            res.send({
+                status: 'failure'
+            })
+        } else {
+            res.send(docs)
+        }
+    })
 });
 
 /**
