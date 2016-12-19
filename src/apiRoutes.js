@@ -44,21 +44,28 @@ router.post('/signup', (req, res) => {
 });
 
 /**
- * UPDATE to /update
+ * POST to /update
  * Updates a user's information
  */
 router.post('/update', (req, res) =>{
     User.findOneAndUpdate({
         email: req.body.email
-    }, req.body.update, (err) => {
-        if (err) {
+    }, req.body, {
+        new: true,
+        fields: {
+            email: 1,
+            picture: 1,
+            firstName: 1,
+            lastName: 1,
+            description: 1
+        }
+    }, (err, doc) => {
+        if (doc == null) {
             res.send({
                 status: 'failure'
             });
         } else {
-            res.send({
-                status: 'success'
-            })
+            res.send(doc);
         }
     })
 });
