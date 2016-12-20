@@ -18,8 +18,14 @@ passport.serializeUser(function (user, done) {
     done(null, user.id);
 });
 
+/**
+ * User data is serialized into the req.user when user successfully logs in
+ * Only care about _id and email to be used when requesting user information
+ */
 passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
+    User.findById(id, {
+        email: 1
+    }, (err, user) => {
         done(err, user);
     });
 });
@@ -42,7 +48,7 @@ passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done)
                 if (isMatch) {
                     return done(null, user);
                 }
-                return done(null, false, {msg: 'Incorrect username and or password'});
+                return done(null, false, {message: 'Incorrect username and or password'});
             });
         });
     }
@@ -51,6 +57,33 @@ passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done)
 /**
  * Dashboard routes for viewing and modifying profile
  */
+
+/**
+ * GET to /dashboard
+ * Get a users information
+ */
+router.get('/dashboard', (req, res) => {
+    if (req.isAuthenticated()) {
+        User.findById(req.user._id, {
+            email: 1,
+            firstName: 1,
+            lastName: 1,
+            picture: 1,
+            description: 1
+        }, (err, doc) => {
+            if (err) {
+                res.send({
+                    status: 'failure'
+                })
+            } else {
+                res.send(doc)
+            }
+        })
+    } else {
+        console.log('user not authenticated');
+        res.redirect('/#/login');
+    }
+});
 
 /**
  * GET to /users
@@ -79,7 +112,40 @@ router.get('/users', (req, res) => {
 /**
  * POST to /login
  */
+router.post('/login', (req, res, next) => {
+    /**
+     * Req authentication only needs to happen when logging in
+     */
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            console.log(info);
+            res.redirect('/login');
+        }
+        /**
+         * req.isAuthenticated is then set to true if passport.authenticate is successful
+         * and once req.logIn is called
+         */
+        req.logIn(user, (err) => {
+            if (err) {
+                return next(err);
+            }
+            res.redirect('/');
+        })
+    })(req, res, next);
+});
 
+/**
+ * GET /logout
+ * Logs out user
+ */
+router.get('/logout', (req, res) => {
+    console.log('logged out');
+    req.logout();
+    res.redirect('/');
+});
 
 /**
  * POST to /signup
