@@ -7,7 +7,8 @@ class Signup extends Component {
 
         signupUser({
             email: document.getElementById('email').value,
-            password: document.getElementById('password').value
+            password: document.getElementById('password').value,
+            picture: 'http://freevector.co/wp-content/uploads/2014/09/1954-face-with-a-question-mark7.png'
         });
     }
 
