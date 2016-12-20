@@ -9,9 +9,9 @@ import 'babel-polyfill';
 import path from 'path';
 import express from 'express';
 import session from 'express-session';
-import flash from 'express-flash';
 import expressValidator from 'express-validator';
-import compression from 'compression';
+// import flash from 'express-flash';
+// import compression from 'compression';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import React from 'react';
@@ -37,7 +37,6 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(compression);
 app.use(expressValidator());
 app.use(session({
     resave: true,
@@ -50,7 +49,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash);
+// app.use(flash);
+// app.use(compression);
 
 
 /**
