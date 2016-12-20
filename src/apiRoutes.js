@@ -4,20 +4,13 @@
  */
 
 import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
 import User from './data/models/User';
 
 const router = express.Router();
 
-router.get('/', function(req, res) {
-    // res.sendFile(__dirname + "/public/index.html");
-    res.send('API Routes');
-});
-
-//
-// Dashboard routes for viewing and modifying profile
-// -----------------------------------------------------------------------------
+/**
+ * Dashboard routes for viewing and modifying profile
+ */
 
 /**
  * GET to /users

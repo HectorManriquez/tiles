@@ -9,7 +9,9 @@ import {
     databaseOptions
 } from '../config';
 
-// Make bluebird default mongoose promises library not using MongoDB driver
+/**
+ * Make bluebird default mongoose promises library not using MongoDB driver
+ */
 mongoose.Promise = bluebird;
 const mongooseConn = mongoose.createConnection(databaseUrl, databaseOptions);
 
