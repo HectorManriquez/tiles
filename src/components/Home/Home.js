@@ -21,7 +21,7 @@ class Home extends Component {
         if (!this.state) {
             return (
                 <div>
-                    <h1>No Users Registered, be the first one to sign up!</h1>
+                    <h4>No Users Registered, be the first one to sign up!</h4>
                 </div>
             )
         } else {
