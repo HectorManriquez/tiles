@@ -35,10 +35,15 @@ passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done)
             if (!user) {
                 return done(null, false, {message: 'Incorrect username and or password'});
             }
-            if (!user.validPassword(password)) {
-                return done(null, false, {message: 'Incorrect username and or password'});
-            }
-            return done(null, user);
+            user.comparePassword(password, (err, isMatch) => {
+                if (err) {
+                    return done(err);
+                }
+                if (isMatch) {
+                    return done(null, user);
+                }
+                return done(null, false, {msg: 'Incorrect username and or password'});
+            });
         });
     }
 ));
