@@ -5,7 +5,9 @@ import Promise from 'bluebird';
 class Dashboard extends Component {
     constructor() {
         super();
-        this.state = {};
+        this.state = {
+            picture: 'http://freevector.co/wp-content/uploads/2014/09/1954-face-with-a-question-mark7.png'
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this);
