@@ -7,10 +7,6 @@ function logoutUser() {
         method: 'get',
         responseType: 'json'
     })
-        .then(function (res) {
-            // return res.redirect('/');
-            return res.data;
-        })
 }
 
 export default logoutUser();
