@@ -8,8 +8,8 @@ class Head extends Component {
     render() {
         return (
             <nav>
-                <div className='nav-wrapper'>
-                    <a href='/#' className='brand-logo'>Tiles</a>
+                <div className='nav-wrapper blue-grey lighten-3'>
+                    <a href='/#' className='brand-logo center'>Tiles</a>
                     <a href='#' data-activates='collapse' className='button-collapse right' ref='collapseButton'>
                         <i className='material-icons'>menu</i>
                     </a>
