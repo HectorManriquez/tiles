@@ -51,6 +51,7 @@ class Dashboard extends Component {
         } else {
             return (
                 <div>
+                    <h4 className='center-align'>Dashboard</h4>
                     <h4>Update Information</h4>
                     <form className='col s12 m12 l12' onSubmit={this.handleUpdateSubmit}>
                         <div className='row'>
