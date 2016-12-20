@@ -4,9 +4,44 @@
  */
 
 import express from 'express';
+import passport from 'passport';
 import User from './data/models/User';
 
+const LocalStrategy = require('passport-local').Strategy;
+
 const router = express.Router();
+
+/**
+ * Passport configuration serializer/deserializer
+ */
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+        done(err, user);
+    });
+});
+
+/**
+ * Passport configuration for retrieving a user using email and password
+ */
+passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
+        User.findOne({email: email.toLowerCase()}, (err, user) => {
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                return done(null, false, {message: 'Incorrect username and or password'});
+            }
+            if (!user.validPassword(password)) {
+                return done(null, false, {message: 'Incorrect username and or password'});
+            }
+            return done(null, user);
+        });
+    }
+));
 
 /**
  * Dashboard routes for viewing and modifying profile
@@ -37,14 +72,16 @@ router.get('/users', (req, res) => {
 });
 
 /**
+ * POST to /login
+ */
+
+
+/**
  * POST to /signup
  * Creates a user
  */
 router.post('/signup', (req, res) => {
-    User.create({
-        email: req.body.email,
-        password: req.body.password
-    }, (err) => {
+    User.create(req.body, (err) => {
         if (err) {
             res.send({
                 status: 'failure'
@@ -62,7 +99,7 @@ router.post('/signup', (req, res) => {
  * Updates a user's information if user exists
  * Returns updated document
  */
-router.post('/update', (req, res) =>{
+router.post('/update', (req, res) => {
     User.findOneAndUpdate({
         email: req.body.email
     }, req.body, {
