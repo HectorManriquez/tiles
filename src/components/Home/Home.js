@@ -27,7 +27,7 @@ class Home extends Component {
         } else {
             return (
                 <div>
-                    <h4 className='left-align'>All Current Users</h4>
+                    <h4 className='center-align'>All Current Users</h4>
                     <div className='row'>
                         {this.state.users.map((user, index) => {
                             return (
