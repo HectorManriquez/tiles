@@ -20,6 +20,7 @@ class Home extends Component {
     render() {
         return (
             <div>
+                <h4 className='center-align'>Login</h4>
                 <form className='col s12 m12 l12' onSubmit={this.handleSubmit}>
                     <div className='row'>
                         <div className='input-field col s12 m12 l12'>
