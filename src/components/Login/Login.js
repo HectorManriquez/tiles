@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import loginUser from '../../utils/loginUser';
 
 class Home extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        signupUser({
+        loginUser({
             email: document.getElementById('email').value,
             password: document.getElementById('password').value
         });
