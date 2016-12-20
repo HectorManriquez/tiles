@@ -9,12 +9,19 @@ class Signup extends Component {
             email: document.getElementById('email').value,
             password: document.getElementById('password').value,
             picture: 'http://freevector.co/wp-content/uploads/2014/09/1954-face-with-a-question-mark7.png'
-        });
+        })
+            .then((res) => {
+                console.log(res);
+                if (res.status) {
+                    document.location.href = '/login';
+                }
+            });
     }
 
     render() {
         return (
             <div>
+                <h4 className='center-align'>Sign Up</h4>
                 <form className='col s12 m12 l12' onSubmit={this.handleSubmit}>
                     <div className='row'>
                         <div className='input-field col s12 m12 l12'>
