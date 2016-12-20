@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import {
     Router,
     Route,
-    Link,
-    IndexRoute,
-    hashHistory,
     browserHistory
 } from 'react-router';
 import Header from './Header/Header';
@@ -19,7 +16,7 @@ class App extends Component {
         return (
             <div className="container">
                 <Header/>
-                <Router history={hashHistory}>
+                <Router history={browserHistory}>
                     <Route path='/' component={Home}/>
                     <Route path='/dashboard' component={Dashboard}/>
                     <Route path='/signup' component={Signup}/>
