@@ -5,6 +5,7 @@ import {
     browserHistory
 } from 'react-router';
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 import Home from './Home/Home';
 import Dashboard from './Dashboard/Dashboard';
 import Signup from './Signup/Signup';
@@ -23,6 +24,7 @@ class App extends Component {
                     <Route path='/login' component={Login}/>
                     <Route path='*' component={NotFound}/>
                 </Router>
+                <Footer/>
             </div>
         )
     }
