@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {browserHistory} from 'react-router'
 import loginUser from '../../utils/loginUser';
 
 class Home extends Component {
@@ -8,7 +9,12 @@ class Home extends Component {
         loginUser({
             email: document.getElementById('email').value,
             password: document.getElementById('password').value
-        });
+        })
+            .then((res) => {
+                if (res.status) {
+                    document.location.href = '/';
+                }
+            });
     }
 
     render() {

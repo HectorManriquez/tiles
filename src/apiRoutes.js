@@ -122,7 +122,9 @@ router.post('/login', (req, res, next) => {
         }
         if (!user) {
             console.log(info);
-            res.redirect('/login');
+            return res.send({
+                status: false
+            });
         }
         /**
          * req.isAuthenticated is then set to true if passport.authenticate is successful
@@ -132,7 +134,9 @@ router.post('/login', (req, res, next) => {
             if (err) {
                 return next(err);
             }
-            res.redirect('/');
+            return res.send({
+                status: true
+            });
         })
     })(req, res, next);
 });
